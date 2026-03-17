@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Light Theme (Default) - Based on ShadCN Default Light */
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 215 20.2% 65.1%;
+    --secondary-foreground: 224 71.4% 4.1%;
+    --muted: 215 27.9% 90.0%; /* Adjusted for better visibility */
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 91.2% 59.8%; /* Adjusted for better visibility */
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 20.2% 65.1%;
+    --input: 215 20.2% 65.1%;
+    --ring: 221.2 83.2% 53.3%;
+    --chart-1: 221.2 83.2% 53.3%;
+    --chart-2: 160.2 73.2% 43.3%;
+    --chart-3: 40.2 83.2% 53.3%;
+    --chart-4: 280.2 83.2% 53.3%;
+    --chart-5: 340.2 83.2% 53.3%;
+    --radius: 0.5rem;
+
+    /* Sidebar Light Theme */
+    --sidebar-background: 220 15% 95%; /* Lighter background for light theme sidebar */
+    --sidebar-foreground: 224 71.4% 4.1%; /* Dark text */
+    --sidebar-primary: 221.2 83.2% 53.3%;
+    --sidebar-primary-foreground: 210 20% 98%;
+    --sidebar-accent: 215 27.9% 90.0%; /* Slightly darker accent */
+    --sidebar-accent-foreground: 224 71.4% 4.1%;
+    --sidebar-border: 215 20.2% 85.1%; /* Lighter border */
+    --sidebar-ring: 221.2 83.2% 53.3%;
+  }
+
+  .dark {
+    /* Dark Theme - Navy Blue and Gold */
+    --background: 220 35% 10%; /* Even darker Navy */
+    --foreground: 0 0% 90%;
+    --card: 220 30% 15%;
+    --card-foreground: 0 0% 90%;
+    --popover: 220 35% 8%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 210 70% 45%; /* Slightly lighter Navy */
+    --primary-foreground: 50 100% 55%; /* Slightly lighter Gold */
+    --secondary: 50 100% 55%;
+    --secondary-foreground: 220 30% 8%;
+    --muted: 220 30% 20%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 50 100% 65%; /* More vibrant Gold */
+    --accent-foreground: 220 30% 8%;
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 0 0% 90%;
+    --border: 220 30% 25%;
+    --input: 220 30% 22%;
+    --ring: 50 100% 65%;
+    --chart-1: 210 70% 55%; /* Dark mode chart colors */
+    --chart-2: 50 80% 55%;
+    --chart-3: 220 60% 45%;
+    --chart-4: 45 90% 50%;
+    --chart-5: 200 50% 40%;
+
+    /* Sidebar Dark Theme */
+    --sidebar-background: 220 35% 8%; /* Darker Navy for sidebar */
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 50 100% 55%;
+    --sidebar-primary-foreground: 220 30% 8%;
+    --sidebar-accent: 220 30% 15%;
+    --sidebar-accent-foreground: 50 100% 65%;
+    --sidebar-border: 220 30% 20%;
+    --sidebar-ring: 50 100% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Smooth transition for theme changes */
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+}
+
+/* Ensure sidebar components use the correct variables */
+[data-sidebar="sidebar"] {
+  background-color: hsl(var(--sidebar-background));
+  color: hsl(var(--sidebar-foreground));
+  border-color: hsl(var(--sidebar-border));
+}
+
+[data-sidebar="menu-button"] {
+  color: hsl(var(--sidebar-foreground));
+}
+
+[data-sidebar="menu-button"]:hover,
+[data-sidebar="menu-button"][data-state="open"] {
+  background-color: hsl(var(--sidebar-accent));
+  color: hsl(var(--sidebar-accent-foreground));
+}
+
+/* Apply primary style for active button */
+[data-sidebar="menu-button"][data-active="true"] {
+   background-color: hsl(var(--sidebar-primary));
+   color: hsl(var(--sidebar-primary-foreground));
+}
+
+/* Apply primary style also on hover for active button */
+[data-sidebar="menu-button"][data-active="true"]:hover {
+   background-color: hsl(var(--sidebar-primary) / 0.9); /* Slightly darker on hover */
+   color: hsl(var(--sidebar-primary-foreground));
+}
+
+
+[data-sidebar="group-label"] {
+    color: hsl(var(--sidebar-foreground) / 0.7);
+}
+
+[data-sidebar="menu-sub-button"] {
+    color: hsl(var(--sidebar-foreground));
+}
+
+[data-sidebar="menu-sub-button"]:hover,
+[data-sidebar="menu-sub-button"][data-active="true"] {
+    background-color: hsl(var(--sidebar-accent));
+    color: hsl(var(--sidebar-accent-foreground));
+}
